@@ -172,16 +172,15 @@ function generateHTML(data) {
          }
       </style>
       <body>
+      <main>
+      <div class="photo-header"><img src = "${data.avatar_url}"></div> 
         <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-4">Hi! My name is ${data.name}</h1>
-          <p class="lead">I am from ${data.location}.</p>
-        <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
-    <ul class="list-group">
-      <li class="list-group-item">My GitHub username is ${data.github}</li>
-    </ul>
+          <h1>Hi! My name is ${data.name}</h1>
+          <h3><a href = "https://www.google.com/maps/search/?api=1&${data.location}">${data.location}</a></h3>
   </div>
 </div>
+</main>
 </body>`
 }
 

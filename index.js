@@ -1,12 +1,20 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
-// const pdf = require('pdfjs')
+const pdf = require('html-pdf')
+const htmlFile = fs.readFileSync('index.html', 'utf8');
+const options = { format: 'Letter'};
 const axios = require("axios");
 const generateHTML = require("./09-NodeJS_Homework_Develop_generateHTML");
 const writeFileAsync = util.promisify(fs.writeFile);
 
-//const writeFileAsync = util.promisify(fs.writeFile);
+//code borrowed from https://www.npmjs.com/package/html-pdf
+function pdfCreator(){
+  pdf.create(htmlFile, options).toFile('index.pdf', function(err, results){
+    if (err) return console.log(err);
+    console.log(results);
+  });
+}
 
 function promptUser() {
   return inquirer.prompt([
@@ -46,6 +54,9 @@ promptUser()
       })
       .then(function() {
         console.log("Successfully wrote to index.html");
+      })
+      .then(function(){
+        pdfCreator()
       })    
       .catch(function (err) {
         console.log(err);
