@@ -1,8 +1,10 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
-const pdf = require('pdfjs')
+// const pdf = require('pdfjs')
 const axios = require("axios");
+const generateHTML = require("./09-NodeJS_Homework_Develop_generateHTML");
+const writeFileAsync = util.promisify(fs.writeFile);
 
 //const writeFileAsync = util.promisify(fs.writeFile);
 
@@ -30,52 +32,31 @@ promptUser()
     console.log(results.faveColor);
     const username = results.username;
     axios
-      .get(`https://github.com/${username}`)
+      .get(`https://api.github.com/users/${username}`)
       .then(function (res) {
-        let data = res.data;
-        console.log(data)
+        const answers = {
+          color:results.faveColor,
+          ...res.data
+        }
+        console.log(answers);
+        console.log(generateHTML(answers));
+        const html = generateHTML(answers);
+
+        return writeFileAsync("index.html", html);
       })
+      .then(function() {
+        console.log("Successfully wrote to index.html");
+      })    
       .catch(function (err) {
         console.log(err);
       });
-  })
-  .catch(function (err) {
-    console.log(err);
   });
 
+  
 
+// function writeToFile(fileName, data) {
 
-
-// axios
-// .get("https://github.com/WilliamWhite86")
-//   .then(function(res) {
-//     console.log(res.data);
-//   });
-
-
-// function generatePDF(answers) {
-//     const doc = new pdf.Document({
-//         font:    require('pdfjs/font/Helvetica'),
-//         padding: 10,
-
-
-//       })
-//       doc.pipe(fs.createWriteStream('output.pdf'))
-
-//       // render something onto the document
-//       answers.username
-//       answers.favecolor
-//       await doc.end()
-//   }
-
-
-const questions = [
-
-];
-
-function writeToFile(fileName, data) {
-
-}
+// }
 
 // function init() {
 // }
