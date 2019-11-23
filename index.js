@@ -7,6 +7,7 @@ const options = { format: 'Letter'};
 const axios = require("axios");
 const generateHTML = require("./09-NodeJS_Homework_Develop_generateHTML");
 const writeFileAsync = util.promisify(fs.writeFile);
+const open = require('open');
 
 //code borrowed from https://www.npmjs.com/package/html-pdf
 function pdfCreator(){
@@ -57,23 +58,11 @@ promptUser()
       })
       .then(function(){
         pdfCreator()
+      })
+      .then(function(){
+        open('index.pdf');
       })    
       .catch(function (err) {
         console.log(err);
       });
   });
-
-  
-
-// function writeToFile(fileName, data) {
-
-// }
-
-// function init() {
-// }
-// init();
-
-
-  //init();
-
-
