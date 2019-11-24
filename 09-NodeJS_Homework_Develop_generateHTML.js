@@ -155,7 +155,7 @@ function generateHTML(data) {
            border-radius: 6px;
            background-color: ${colors[data.color].headerBackground};
            color: ${colors[data.color].headerColor};
-           width: 50%;
+           width: 45%;
            margin: 20px;
          }
          

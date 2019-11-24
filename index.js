@@ -10,7 +10,7 @@ const open = require('open');
 
 //code borrowed from https://www.npmjs.com/package/html-pdf
 function pdfCreator(htmlFile){
-  pdf.create(htmlFile, options).toFile('index.pdf', function(err, results){
+  pdf.create(htmlFile, options).toFile('index.pdf', function(err){
     if (err) return console.log(err);
     open('index.pdf');
   });
@@ -58,24 +58,3 @@ promptUser()
         console.log(err);
       });
   });
-
-
-// async function init() {
-//   try {
-    
-//     const htmlDoc = await writeFileAsync();
-
-//     const pdfDoc = pdfCreator(htmlDoc,"index.pdf");
-
-//     await open(pdfDoc);
-    
-//     //open("index.pdf", doc);
-
-//     //console.log("Successfully opened index.pdf");
-//   } catch(err) {
-//     console.log(err);
-//   }
-// }
-
-
-
