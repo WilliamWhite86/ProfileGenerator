@@ -1,8 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
-const pdf = require('html-pdf')
-const htmlFile = fs.readFileSync('index.html', 'utf8');
+const pdf = require('html-pdf');
 const options = { format: 'Letter'};
 const axios = require("axios");
 const generateHTML = require("./09-NodeJS_Homework_Develop_generateHTML");
@@ -10,10 +9,11 @@ const writeFileAsync = util.promisify(fs.writeFile);
 const open = require('open');
 
 //code borrowed from https://www.npmjs.com/package/html-pdf
-function pdfCreator(){
+function pdfCreator(htmlFile){
   pdf.create(htmlFile, options).toFile('index.pdf', function(err, results){
     if (err) return console.log(err);
     console.log(results);
+    open('index.pdf');
   });
 }
 
@@ -28,12 +28,10 @@ function promptUser() {
       type: "list",
       name: "faveColor",
       message: "What is your favorite color?",
-      choices: ["red", "blue", "pink", "red"]
+      choices: ["red", "blue", "pink", "green"]
     }
   ]);
 }
-
-//let answers = promptUser()
 
 promptUser()
   .then(function (results) {
@@ -48,21 +46,40 @@ promptUser()
           ...res.data
         }
         console.log(answers);
-        console.log(generateHTML(answers));
         const html = generateHTML(answers);
-
+        
         return writeFileAsync("index.html", html);
       })
       .then(function() {
         console.log("Successfully wrote to index.html");
+        const htmlFile = fs.readFile('index.html', 'utf8', (err, data) => {
+          pdfCreator(data, "index.html");
+        })
+
       })
-      .then(function(){
-        pdfCreator()
-      })
-      .then(function(){
-        open('index.pdf');
-      })    
+  
       .catch(function (err) {
         console.log(err);
       });
   });
+
+
+// async function init() {
+//   try {
+    
+//     const htmlDoc = await writeFileAsync();
+
+//     const pdfDoc = pdfCreator(htmlDoc,"index.pdf");
+
+//     await open(pdfDoc);
+    
+//     //open("index.pdf", doc);
+
+//     //console.log("Successfully opened index.pdf");
+//   } catch(err) {
+//     console.log(err);
+//   }
+// }
+
+
+

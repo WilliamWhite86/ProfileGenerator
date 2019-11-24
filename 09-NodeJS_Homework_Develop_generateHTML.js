@@ -26,6 +26,7 @@ const colors = {
 };
 
 function generateHTML(data) {
+  console.log(data);
   return `<!DOCTYPE html>
 <html lang="en">
    <head>
@@ -177,7 +178,7 @@ function generateHTML(data) {
         <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <h1>Hi! My name is ${data.name}</h1>
-          <h3><a href = "https://www.google.com/maps/search/?api=1&${data.location}">${data.location}</a></h3>
+          <h3><a href = "https://www.google.com/maps/search/?api=1&query=${data.location}">${data.location}</a></h3>
   </div>
 </div>
 </main>
