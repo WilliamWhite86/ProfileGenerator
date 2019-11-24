@@ -12,7 +12,6 @@ const open = require('open');
 function pdfCreator(htmlFile){
   pdf.create(htmlFile, options).toFile('index.pdf', function(err, results){
     if (err) return console.log(err);
-    console.log(results);
     open('index.pdf');
   });
 }
@@ -35,8 +34,6 @@ function promptUser() {
 
 promptUser()
   .then(function (results) {
-    console.log(results.username);
-    console.log(results.faveColor);
     const username = results.username;
     axios
       .get(`https://api.github.com/users/${username}`)
@@ -52,12 +49,11 @@ promptUser()
       })
       .then(function() {
         console.log("Successfully wrote to index.html");
-        const htmlFile = fs.readFile('index.html', 'utf8', (err, data) => {
+        fs.readFile('index.html', 'utf8', (err, data) => {
           pdfCreator(data, "index.html");
         })
 
       })
-  
       .catch(function (err) {
         console.log(err);
       });
