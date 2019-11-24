@@ -69,6 +69,7 @@ function generateHTML(data) {
          h1, h2, h3, h4, h5, h6 {
          font-family: 'BioRhyme', serif;
          margin: 0;
+         text-align: center;
          }
          h1 {
          font-size: 3em;
@@ -177,15 +178,26 @@ function generateHTML(data) {
       <body>
       <main>
       
-        <div class="photo-header"> 
-        <div class="jumbotron jumbotron-fluid">
-       <div class="container">
-          <img src = "${data.avatar_url}">
-          <h1>Hi!</h1> 
-          <h3>My name is ${data.name}</h3>
-          <h4><a href = "https://www.google.com/maps/search/?api=1&query=${data.location}">${data.location}</a> <a href = "${data.html_url}">GitHub <a href = "${data.blog}">Blog</h4></div> 
-  </div>
-</div>
+      <div class="container">
+        <div class = "row">
+          <div class="photo-header"> 
+            <div class="jumbotron jumbotron-fluid">    
+              <img src = "${data.avatar_url}">
+              <h1>Hi!</h1> 
+              <h3>My name is ${data.name}</h3>
+              <h4><a href = "https://www.google.com/maps/search/?api=1&query=${data.location}">${data.location}</a> <a href = "${data.html_url}">GitHub <a href = "${data.blog}">Blog</a></h4>
+            </div> 
+          </div>
+        </div>
+      </div>
+      <div class = "row">
+        <h4>${data.bio}<h4>
+      </div>
+      <div class = "row">
+        <div class = "card">
+        <h4>Public Repositories</h4>
+        </div>
+      </div>
 </main>
 </body>`
 }
