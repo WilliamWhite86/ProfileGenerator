@@ -109,8 +109,10 @@ function generateHTML(data) {
          margin-top: -75px;
          border: 6px solid ${colors[data.color].photoBorderColor};
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
-         }
-         .photo-header h1, .photo-header h2 {
+         display:block;
+         margin:auto; 
+        }
+         .photo-header h1, .photo-header h2, .photo-header h3, .photo-header h4 {
          width: 100%;
          text-align: center;
          }
@@ -174,11 +176,14 @@ function generateHTML(data) {
       </style>
       <body>
       <main>
-      <div class="photo-header"><img src = "${data.avatar_url}"></div> 
+      
+        <div class="photo-header"> 
         <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <h1>Hi! My name is ${data.name}</h1>
-          <h3><a href = "https://www.google.com/maps/search/?api=1&query=${data.location}">${data.location}</a></h3>
+       <div class="container">
+          <img src = "${data.avatar_url}">
+          <h1>Hi!</h1> 
+          <h3>My name is ${data.name}</h3>
+          <h4><a href = "https://www.google.com/maps/search/?api=1&query=${data.location}">${data.location}</a> <a href = "${data.html_url}">GitHub <a href = "${data.blog}">Blog</h4></div> 
   </div>
 </div>
 </main>
