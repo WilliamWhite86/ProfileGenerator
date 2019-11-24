@@ -155,6 +155,7 @@ function generateHTML(data) {
            border-radius: 6px;
            background-color: ${colors[data.color].headerBackground};
            color: ${colors[data.color].headerColor};
+           width: 50%;
            margin: 20px;
          }
          
@@ -195,8 +196,19 @@ function generateHTML(data) {
       </div>
       <div class = "row">
         <div class = "card">
-        <h4>Public Repositories</h4>
+        <h4>Public Repositories ${data.public_repos}</h4>
         </div>
+        <div class = "card">
+        <h4>Followers ${data.followers}</h4>
+        </div>
+      </div>
+      <div class = "row">
+         <div class = "card">
+         <h4>GitHub Stars</h4>
+         </div>
+         <div class = "card">
+         <h4>Following ${data.following}</h4>
+         </div>
       </div>
 </main>
 </body>`
